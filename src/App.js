@@ -70,8 +70,6 @@ function App() {
             justifyContent: "center",
             height: innerHeight,
             overflowX: "hidden",
-            marginLeft: "20%",
-            marginTop: "5%",
           }}
         >
           <SimpleMap

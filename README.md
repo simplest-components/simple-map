@@ -8,6 +8,8 @@ Map to use on indoor location systems.
 
 ![](https://anonymousart.s3.amazonaws.com/ezgif.com-gif-maker+(1).gif)
 
+Example project: [https://github.com/simplest-components/simple-map](https://github.com/simplest-components/simple-map)
+
 
 ## Install
 
