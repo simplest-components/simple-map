@@ -1,24 +1,89 @@
-import logo from './logo.svg';
-import './App.css';
+import { SimpleMap } from "simple-components-map";
+import { Box } from "@mui/material";
+import mapa from "./mapa.jpg";
+import keys from "./key.png";
+import cat from "./cat.png";
+import wallet from "./wallet.png";
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const { innerHeight } = window;
+  const [objects, setObjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let aux = [];
+    aux.push({
+      img: keys,
+      x: Math.random() * 300,
+      y: Math.random() * 300,
+    });
+
+    let xCat = Math.random() * (850 - 300) + 300;
+    let yMin = xCat < 550 ? 300 : 0;
+
+    aux.push({
+      img: cat,
+      x: xCat,
+      y: Math.random() * (700 - yMin) + yMin,
+    });
+    aux.push({
+      img: wallet,
+      x: Math.random() * 300,
+      y: Math.random() * (700 - 450) + 450,
+    });
+
+    setObjects(aux);
+    setIsLoading(false);
+  }, []);
+
+  const generateData = () => {
+    let aux = [];
+    aux.push({
+      img: keys,
+      x: Math.random() * 300,
+      y: Math.random() * 300,
+    });
+
+    let xCat = Math.random() * (850 - 300) + 300;
+    let yMin = xCat < 550 ? 300 : 0;
+
+    aux.push({
+      img: cat,
+      x: xCat,
+      y: Math.random() * (700 - yMin) + yMin,
+    });
+    aux.push({
+      img: wallet,
+      x: Math.random() * 300,
+      y: Math.random() * (700 - 450) + 450,
+    });
+    return aux;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      {!isLoading && (
+        <Box
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            height: innerHeight,
+            overflowX: "hidden",
+            marginLeft: "20%",
+            marginTop: "5%",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <SimpleMap
+            img={mapa}
+            relation={100}
+            objects={objects}
+            generateData={generateData}
+            refreshFrequence={2}
+          />
+        </Box>
+      )}
+    </>
   );
 }
 
